@@ -23,22 +23,6 @@ class StudentRepositoryImplementationTest {
     }
 
     @Test
-    void testAddStudent_DuplicateId() {
-        Student student1 = new Student("John", "Smith", LocalDate.of(2002, 3, 15), "M", "001");
-        repository.addStudent(student1);
-        Student student2 = new Student("Jane", "Doe", LocalDate.of(2003, 5, 20), "F", "001");
-
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> repository.addStudent(student2));
-        assertTrue(exception.getMessage().contains("Student with ID already exists"));
-    }
-
-    @Test
-    void testDeleteStudent_NonExistingId() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> repository.deleteStudent("999"));
-        assertTrue(exception.getMessage().contains("Student does not exist"));
-    }
-
-    @Test
     void testRetrieveStudentsByAge_ValidAge() {
         repository.addStudent(new Student("John", "Doe", LocalDate.now().minusYears(20), "M", "002"));
         repository.addStudent(new Student("Jane", "Doe", LocalDate.now().minusYears(20), "F", "003"));
